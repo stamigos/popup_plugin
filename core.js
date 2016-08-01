@@ -5,13 +5,31 @@ function appendHtml(el, str) {
     el.appendChild(div.children[0]);
   }
 }
+function getContainer() {
+    return new Promise(function (resolve, reject) {
+        waitForContainerElement(resolve);
+    });
+}
+
+function waitForContainerElement(resolve) {
+    var configElement = document.getElementById('jobufo_script');
+    if (configElement.length === 0) {
+        setTimeout(waitForContainerElement.bind(this, resolve), 30);
+    } else {
+        resolve(configElement);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-	var html = "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
+	var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
 	appendHtml(document.body, html);
 });
-
-var $jobufo = $.noConflict(true);
+getContainer.then(function($container){
+    var $jobufo = $.noConflict(true);
+});
+if (document.getElementById('jobufo_script')) {
+	var $jobufo = $.noConflict(true);
+}
 
 $jobufo(document).ready(function(){
 
