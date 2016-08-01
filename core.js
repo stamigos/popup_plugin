@@ -1,15 +1,4 @@
 function includejQuery(callback) {
-    if(window.jQuery) {
-        // jQuery is already loaded, set up an asynchronous call
-        // to the callback if any
-        if (callback)
-        {
-            setTimeout(function() {
-                callback(jQuery);
-            }, 0);
-        }
-    }
-    else {
         // jQuery not loaded, load it and when it loads call
         // noConflict and the callback (if any).
         var script = document.createElement('script');
@@ -20,7 +9,6 @@ function includejQuery(callback) {
         };
         script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js";
         document.getElementsByTagName('head')[0].appendChild(script);
-    }
 }
 // function appendHtml(el, str) {
 //   var div = document.createElement('div');
@@ -48,6 +36,12 @@ function includejQuery(callback) {
 // }
 var $jobufo = null;
 document.addEventListener('DOMContentLoaded', function() {
+    if(window.jQuery) {
+        // jQuery is already loaded, set up an asynchronous call
+        // to the callback if any
+        console("is jQuery")
+        var $ = $.noConflict(true);
+    }
     includejQuery(function($){
         $jobufo = $.noConflict(true);
         console.log($jobufo)
@@ -79,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 			
 		});
-		
+
     });
 	// var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
 	// appendHtml(document.body, html);
