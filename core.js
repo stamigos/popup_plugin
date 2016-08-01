@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // to the callback if any
         console.log(window.jQuery("script"));
         console.log(jQuery("script"));
-        console.log($("script"));
         var $ = jQuery.noConflict(true);
+        console.log($("script"));
     }
     includejQuery(function($){
         $jobufo = $.noConflict(true);
