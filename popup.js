@@ -11,11 +11,11 @@ var jobufo = {
 	vacancy_counter: 0
 }
 
-$(document).ready(function(){
+$jobufo(document).ready(function(){
 
 	// FaceBook AUTH SDK
-	$.ajaxSetup({ cache: true });
-	$.getScript('http://connect.facebook.net/en_US/sdk.js', function(){
+	$jobufo.ajaxSetup({ cache: true });
+	$jobufo.getScript('http://connect.facebook.net/en_US/sdk.js', function(){
 		FB.init({
 			appId: '1686458094968054',
 			version: 'v2.5'
@@ -24,55 +24,55 @@ $(document).ready(function(){
 
 
 
-	$("#jobufo_button").click(function(){
-		$("#jobufo").fadeIn(1000);
-		$("#jobufo_back").fadeIn(1000);
+	$jobufo("#jobufo_button").click(function(){
+		$jobufo("#jobufo").fadeIn(1000);
+		$jobufo("#jobufo_back").fadeIn(1000);
 
 		if (jobufo.token == null)
 		jobufoGetVacancy();
 	});
 
 
-	$("#jobufo_back").click(function(){
-		$("#jobufo").fadeOut(1000);
-		$("#jobufo_back").fadeOut(1000);
+	$jobufo("#jobufo_back").click(function(){
+		$jobufo("#jobufo").fadeOut(1000);
+		$jobufo("#jobufo_back").fadeOut(1000);
 	});
 
-	$("#jobufo .header .close").click(function(){
-		$("#jobufo").fadeOut(1000);
-		$("#jobufo_back").fadeOut(1000);
+	$jobufo("#jobufo .header .close").click(function(){
+		$jobufo("#jobufo").fadeOut(1000);
+		$jobufo("#jobufo_back").fadeOut(1000);
 	});
 
-	$("#jobufo .sign").click(function(){
-		$("#jobufo .page .step_login").fadeOut("slow", function(){
-			$("#jobufo .page .step_sign").fadeIn("slow");
+	$jobufo("#jobufo .sign").click(function(){
+		$jobufo("#jobufo .page .step_login").fadeOut("slow", function(){
+			$jobufo("#jobufo .page .step_sign").fadeIn("slow");
 		});
 	});
 
-	$("#jobufo .go_login").click(function(){
-		$("#jobufo .page .step_sign").fadeOut("slow", function(){
-			$("#jobufo .page .step_login").fadeIn("slow");
+	$jobufo("#jobufo .go_login").click(function(){
+		$jobufo("#jobufo .page .step_sign").fadeOut("slow", function(){
+			$jobufo("#jobufo .page .step_login").fadeIn("slow");
 		});
 	});
 
-	$("#jobufo .page .step_login input").change(function(){
-		var len = $(this).val().length;
+	$jobufo("#jobufo .page .step_login input").change(function(){
+		var len = $jobufo(this).val().length;
 
-		if (len > 0) $(this).parent().find("span").addClass("fix");
+		if (len > 0) $jobufo(this).parent().find("span").addClass("fix");
 		else $(this).parent().find("span").removeClass("fix");
 	});
 
-	$("#jobufo .step_login input").keyup(function(event){
+	$jobufo("#jobufo .step_login input").keyup(function(event){
 		if (event.keyCode == 13) {
 			$("#jobufo .step_login .login_button").click();
 		}
 	});
 
 	function jobufoLogin() {
-		var login = $("#jobufo .step_login .email").val();
-		var pass = $("#jobufo .step_login .pass").val();
+		var login = $jobufo("#jobufo .step_login .email").val();
+		var pass = $jobufo("#jobufo .step_login .pass").val();
 
-		$.ajax({
+		$jobufo.ajax({
 			url: jobufo.api + "/auth/login/",
 			type: "POST",
 			data: {email: login, password: pass},
@@ -87,11 +87,11 @@ $(document).ready(function(){
 					//if (cb) cb();
 					
 					//jobufoGetVacancy();
-					$("#jobufo .step_login").fadeOut("slow"); setTimeout(function(){
-						$("#jobufo .step_vacancy").fadeIn("500");
+					$jobufo("#jobufo .step_login").fadeOut("slow"); setTimeout(function(){
+						$jobufo("#jobufo .step_vacancy").fadeIn("500");
 					});
 
-					$.ajax({
+					$jobufo.ajax({
 						url: jobufo.api + "/auth/user/",
 						type: "GET",
 						headers: jobufo.headers,
@@ -102,7 +102,7 @@ $(document).ready(function(){
 
 							// APPLY CLICK AFTER LogIN
 							if (jobufo.last_apply != null) {
-								$(jobufo.last_apply).click();
+								$jobufo(jobufo.last_apply).click();
 								jobufo.last_apply = null;
 							}
 						}
@@ -119,7 +119,7 @@ $(document).ready(function(){
   				var fb_token = response.authResponse.accessToken;
   				console.log(fb_token, response);
 
-  				$.ajax({
+  				$jobufo.ajax({
 					url: jobufo.api + "/auth/facebook/",
 					type: "POST",
 					//contentType: "application/json",
@@ -134,11 +134,11 @@ $(document).ready(function(){
 							}
 						}
 					//jobufoGetVacancy();
-					$("#jobufo .step_login").fadeOut("slow"); setTimeout(function(){
-						$("#jobufo .step_vacancy").fadeIn("500");
+					$jobufo("#jobufo .step_login").fadeOut("slow"); setTimeout(function(){
+						$jobufo("#jobufo .step_vacancy").fadeIn("500");
 					});
 
-					$.ajax({
+					$jobufo.ajax({
 						url: jobufo.api + "/auth/user/",
 						type: "GET",
 						headers: jobufo.headers,
@@ -149,7 +149,7 @@ $(document).ready(function(){
 
 							// APPLY CLICK AFTER LogIN
 							if (jobufo.last_apply != null) {
-								$(jobufo.last_apply).click();
+								$jobufo(jobufo.last_apply).click();
 								jobufo.last_apply = null;
 							}
 						}
@@ -164,13 +164,13 @@ $(document).ready(function(){
 	}
 
 
-	$("#jobufo .login_button").click(function(){jobufoLogin();});
-	$("#jobufo .step_login .facebook").click(facebookLogin);
+	$jobufo("#jobufo .login_button").click(function(){jobufoLogin();});
+	$jobufo("#jobufo .step_login .facebook").click(facebookLogin);
 
-	$("#jobufo .forgot").click(function(){
-		var email = $("#jobufo .step_login .email").val();
+	$jobufo("#jobufo .forgot").click(function(){
+		var email = $jobufo("#jobufo .step_login .email").val();
 		if (email != "") {
-			$.ajax({
+			$jobufo.ajax({
 				url: jobufo.api + "/auth/password/reset/",
 				type: "POST",
 				data: {email: email},
@@ -189,7 +189,7 @@ $(document).ready(function(){
 	function jobufoGetVacancy() {
 		var id = jobufo.company;
 
-		$.ajax({
+		$jobufo.ajax({
 			//url: jobufo.api + "/v1/recruiting/company/" + id + "/",
 			url: jobufo.api + "/v1/recruiting/vacancy/?company=" + id,
 			/*headers: {
@@ -200,12 +200,12 @@ $(document).ready(function(){
 				console.log(data);
 				vacancy = data.vacancy_list;
 
-				$("#jobufo .menu .loading").hide();
+				$jobufo("#jobufo .menu .loading").hide();
 				drawVacancyList(data.top_jobs);
 				drawVacancyList(data.normal_jobs);
 
 				// AFTER LOADING -> Open First Vacancy
-				$("#jobufo .menu .item:eq(1)").click();
+				$jobufo("#jobufo .menu .item:eq(1)").click();
 
 			}
 		});
@@ -217,7 +217,7 @@ $(document).ready(function(){
 			var vac = vacancy[a];
 
 			// GENERATE VACANCY -> MENU
-			$("#jobufo .menu .template").clone().appendTo("#jobufo .menu");
+			$jobufo("#jobufo .menu .template").clone().appendTo("#jobufo .menu");
 			var menu = $("#jobufo .menu .template:eq(1)");
 			menu.removeClass("template");
 			menu.html(vac.title);
@@ -225,8 +225,8 @@ $(document).ready(function(){
 			menu.click(jobufoMenuSelect);
 
 			// PARSE and GENERATE VACANCY -> MEMBERS
-			$("#jobufo .content .members .template").clone().appendTo("#jobufo .content .members");
-			var member = $("#jobufo .content .members .template:eq(1)");
+			$jobufo("#jobufo .content .members .template").clone().appendTo("#jobufo .content .members");
+			var member = $jobufo("#jobufo .content .members .template:eq(1)");
 			member.removeClass("template");
 			member.attr("data-id", jobufo.vacancy_counter);
 			member.find(".name span").html(vac.title);
@@ -271,12 +271,12 @@ $(document).ready(function(){
 
 				// SLIDER CIRCLES FUNCTIONS
 				member.find(".media .slides div").click(function(){
-					var id = $(this).data("id");
-					var parent = $(this).parent().parent().parent();
+					var id = $jobufo(this).data("id");
+					var parent = $jobufo(this).parent().parent().parent();
 					var img = parent.find(".media .items img[data-id=" + id + "]");
 
 					parent.find(".media .slides div").removeClass("select");
-					$(this).addClass("select");
+					$jobufo(this).addClass("select");
 
 					parent.find(".media .items img").fadeOut(500);
 					setTimeout(function(){
@@ -285,7 +285,7 @@ $(document).ready(function(){
 
 
 					// CHECKOUT -> VIDEO / NOT -> PLAY SHOW / NOT
-					if ( $(this).data("video") == "true" || $(this).data("video") == true) {
+					if ( $jobufo(this).data("video") == "true" || $jobufo(this).data("video") == true) {
 						parent.find(".media .play").fadeIn(500);
 						parent.find(".media .dark").fadeIn(500);
 					}
@@ -302,7 +302,7 @@ $(document).ready(function(){
 
 			// PLAY BUTTON FUNCTOIONS
 			member.find(".media .play").click(function(){
-				var member = $(this).parent().parent();
+				var member = $jobufo(this).parent().parent();
 				member.find(".media .items img").fadeOut(500);
 				member.find(".media .play").fadeOut(500);
 				member.find(".media .slide_buttons").hide();
@@ -326,16 +326,16 @@ $(document).ready(function(){
 
 			// LEFT SLIDER OF IMAGES
 			member.find(".media .slide_left").click(function(){
-				var first = $(this).parent().find(".slides div:first");
-				var last = $(this).parent().find(".slides div:last");
-				var selected = $(this).parent().find(".slides .select");
+				var first = $jobufo(this).parent().find(".slides div:first");
+				var last = $jobufo(this).parent().find(".slides div:last");
+				var selected = $jobufo(this).parent().find(".slides .select");
 
 				var index = selected.index();
 				var new_index;
 				if (index == 0) {new_index = last.index();}
 				else {new_index = 0;}
 				
-				$(this).parent().find(".slides div:eq(" + new_index + ")").click();
+				$jobufo(this).parent().find(".slides div:eq(" + new_index + ")").click();
 			});
 
 			// RIGHT SLIDER OF IMAGES
@@ -360,72 +360,72 @@ $(document).ready(function(){
 	}
 
 
-	$("#jobufo .page .apply").click(function(){
+	$jobufo("#jobufo .page .apply").click(function(){
 		// IF LOGGED -> Not First APPLY
 		if (jobufo.token != null) {
 			var video = null;
 			if (jobufo.video != null) video = jobufo.video.video;
-			var id = $("#jobufo .menu .item[class='item select']").data("id");
-			var api_url = $("#jobufo .members .member[data-id=" + id + "]").data("apiurl");
+			var id = $jobufo("#jobufo .menu .item[class='item select']").data("id");
+			var api_url = $jobufo("#jobufo .members .member[data-id=" + id + "]").data("apiurl");
 
 			// RESET DEFAULT
-			$("#jobufo .content .apply .block .not_video").hide();
-			$("#jobufo .content .apply .block .not_allow").hide();
+			$jobufo("#jobufo .content .apply .block .not_video").hide();
+			$jobufo("#jobufo .content .apply .block .not_allow").hide();
 
 			// ERROR OF ALLOW ![APPLICANT]
 			if (jobufo.role != "APPLICANT") {
-				$("#jobufo .content .apply .block").show();
-				$("#jobufo .content .apply .block .not_allow").show().css('display','inline-block');
+				$jobufo("#jobufo .content .apply .block").show();
+				$jobufo("#jobufo .content .apply .block .not_allow").show().css('display','inline-block');
 			}
 
 			if (video != null && jobufo.role == "APPLICANT") {
-				$.ajax({
+				$jobufo.ajax({
 					url: jobufo.api + "/v1/recruiting/application/",
 					type: "POST",
 					data: {vacancy: api_url, video: video},
 					headers: jobufo.headers,
 					success: function(data) {
 						console.log(data);
-						$("#jobufo .step").fadeOut(500);
+						$jobufo("#jobufo .step").fadeOut(500);
 						setTimeout(function(){
-							$("#jobufo .step_apply").fadeIn("slow");
+							$jobufo("#jobufo .step_apply").fadeIn("slow");
 						}, 500);
 					}
 				});
 			}
 			if (video == null) {
-				$("#jobufo .content .apply .block").show();
-				$("#jobufo .content .apply .block .not_video").show().css('display','inline-block');
+				$jobufo("#jobufo .content .apply .block").show();
+				$jobufo("#jobufo .content .apply .block .not_video").show().css('display','inline-block');
 			}
 		}
 		//IF NOT LOGGED -> First APPLY
 		else {
-			jobufo.last_apply = $(this);
-			$("#jobufo .step_vacancy").fadeOut(500);
+			jobufo.last_apply = $jobufo(this);
+			$jobufo("#jobufo .step_vacancy").fadeOut(500);
 			setTimeout(function(){
-				$("#jobufo .step_login").fadeIn(500);
+				$jobufo("#jobufo .step_login").fadeIn(500);
 			}, 500);
 			
 		}
 	});
 
-	$("#jobufo .step_apply .more").click(function(){
-		$("#jobufo .step_apply").fadeOut(500);
-		setTimeout(function(){$("#jobufo .step_vacancy").fadeIn(500);}, 500);
+	$jobufo("#jobufo .step_apply .more").click(function(){
+		$jobufo("#jobufo .step_apply").fadeOut(500);
+		setTimeout(function(){$jobufo("#jobufo .step_vacancy").fadeIn(500);}, 500);
 	});
 
 
 	function jobufoMenuSelect() {
-		$("#jobufo .menu .select").removeClass("select");
-		$(this).addClass("select");
+		$jobufo("#jobufo .menu .select").removeClass("select");
+		$jobufo(this).addClass("select");
 
-		var id = $(this).data("id");
-		$("#jobufo .apply").show();
-		$("#jobufo .apply").data("id", id);
+		var id = $jobufo(this).data("id");
+		$jobufo("#jobufo .apply").show();
+		$jobufo("#jobufo .apply").data("id", id);
 
-		$("#jobufo .members .member").fadeOut(500);
+		$jobufo("#jobufo .members .member").fadeOut(500);
 		setTimeout(function(){
-			$("#jobufo .members .member[data-id="+id+"]").fadeIn(500);
+			$jobufo("#jobufo .members .member[data-id="+id+"]").fadeIn(500);
 		});
 	}
 

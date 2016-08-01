@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$jobufo(document).ready(function(){
 
 	var require = {
 		domain: "http://212.24.111.125/",
@@ -14,15 +14,15 @@ $(document).ready(function(){
 	var link_button = require.domain + require.button;
 
 	// LOAD RESOURCES
-	$(document.body).append("<link href='" +link_css+ "' rel='stylesheet'>");
-	$(document.body).append("<div id='jobufo_back'></div>");
-	$(document.body).append("<div id='jobufo' style='display: none;'></div>");
-	$(document.body).append("<div id='jobufo_button' src='" +link_button+ "'></div>");
+	$jobufo(document.body).append("<link href='" +link_css+ "' rel='stylesheet'>");
+	$jobufo(document.body).append("<div id='jobufo_back'></div>");
+	$jobufo(document.body).append("<div id='jobufo' style='display: none;'></div>");
+	$jobufo(document.body).append("<div id='jobufo_button' src='" +link_button+ "'></div>");
 
-	$("#jobufo").data("domain", require.domain);
-	$("#jobufo").load(link_html, function(){
+	$jobufo("#jobufo").data("domain", require.domain);
+	$jobufo("#jobufo").load(link_html, function(){
 		// LOAD FIRST HTML, AFTER - JS
-		$(document.body).append("<script src='" +link_js+ "'>");
+		$jobufo(document.body).append("<script src='" +link_js+ "'>");
 	});
 	
 });
