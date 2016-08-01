@@ -51,7 +51,7 @@ function includejQuery(callback) {
 var $jobufo = null;
 document.addEventListener('DOMContentLoaded', function() {
     includejQuery(function($){
-        
+        $jobufo = $
     });
 	// var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
 	// appendHtml(document.body, html);
