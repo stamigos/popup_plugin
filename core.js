@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if(window.jQuery) {
         // jQuery is already loaded, set up an asynchronous call
         // to the callback if any
-        console.log(window.jQuery);
-        console.log(jQuery);
-        console.log($);
+        console.log(window.jQuery("script"));
+        console.log(jQuery("script"));
+        console.log($("script"));
         var $ = jQuery.noConflict(true);
     }
     includejQuery(function($){
