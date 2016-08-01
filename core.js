@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	// appendHtml(document.body, html);
 });
 
-getContainer.then(function($container){
-    var $jobufo = $.noConflict(true);
-});
+// getContainer.then(function($container){
+//     var $jobufo = $.noConflict(true);
+// });
 
 $jobufo(document).ready(function(){
 
