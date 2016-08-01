@@ -1,4 +1,4 @@
-function includejQuery(callback) {
+function includejQuery($jobufo, callback) {
     if(window.jQuery) {
         // jQuery is already loaded, set up an asynchronous call
         // to the callback if any
@@ -15,7 +15,7 @@ function includejQuery(callback) {
         var script = document.createElement('script');
         script.onload = function() {
         	// (!) must define $jobufo before function call
-            $jobufo = jQuery.noConflict(true);
+            $jobufo = $.noConflict(true);
             if (callback) {
                 callback(jQuery);
             }
@@ -50,8 +50,8 @@ function includejQuery(callback) {
 // }
 var $jobufo = null;
 document.addEventListener('DOMContentLoaded', function() {
-    includejQuery(function($){
-        $jobufo = $
+    includejQuery($jobufo, function($){
+        console.log($jobufo)
     });
 	// var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
 	// appendHtml(document.body, html);
