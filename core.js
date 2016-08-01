@@ -10,6 +10,9 @@ function getContainer() {
         waitForContainerElement(resolve);
     });
 }
+var getContainer = new Promise(function(resolve, reject) {
+	waitForContainerElement(resolve);
+});
 
 function waitForContainerElement(resolve) {
     var configElement = document.getElementById('jobufo_script');
