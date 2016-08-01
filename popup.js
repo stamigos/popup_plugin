@@ -218,7 +218,7 @@ $jobufo(document).ready(function(){
 
 			// GENERATE VACANCY -> MENU
 			$jobufo("#jobufo .menu .template").clone().appendTo("#jobufo .menu");
-			var menu = $("#jobufo .menu .template:eq(1)");
+			var menu = $jobufo("#jobufo .menu .template:eq(1)");
 			menu.removeClass("template");
 			menu.html(vac.title);
 			menu.data("id", jobufo.vacancy_counter);
