@@ -1,5 +1,5 @@
 var jobufo = {
-	domain: "//93.175.221.13/plugin",
+	domain: "//212.24.111.125",
 	api: "http://dev.jobufo.com/api",
 	token: null,
 	headers: null,

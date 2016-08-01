@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'GothamLight';
-  src: url(http://93.175.221.13/plugin/fonts/Gotham-Rounded-Book.ttf);
+  src: url(http://212.24.111.125/fonts/Gotham-Rounded-Book.ttf);
 }
 @font-face {
   font-family: 'GothamBold';
-  src: url(http://93.175.221.13/plugin/fonts/Gotham-Rounded-Bold.ttf);
+  src: url(http://212.24.111.125/fonts/Gotham-Rounded-Bold.ttf);
 }
 
 .template {
@@ -51,7 +51,7 @@
 	width: 135px;
 	height: 46px;
 
-	background-image: url("http://93.175.221.13/plugin/img/main_sheet.png");
+	background-image: url("http://212.24.111.125/img/main_sheet.png");
     -webkit-animation: play 3s steps(94) infinite;
        -moz-animation: play 3s steps(94) infinite;
         -ms-animation: play 3s steps(94) infinite;

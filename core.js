@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	var require = {
-		domain: "http://93.175.221.13/plugin/",
+		domain: "http://212.24.111.125/",
 		html: "popup.php",
 		css: "popup.css",
 		js: "popup.js",
