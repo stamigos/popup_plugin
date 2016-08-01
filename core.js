@@ -36,6 +36,9 @@ function includejQuery(callback) {
 // }
 var $jobufo = null;
 var $ = null;
+if(window.jQuery) {
+	$ = jQuery.noConflict(true);
+}
 document.addEventListener('DOMContentLoaded', function() {
     if(window.jQuery) {
         // jQuery is already loaded
