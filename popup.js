@@ -133,6 +133,27 @@ $(document).ready(function(){
 								"Authorization": "Token " + data.key
 							}
 						}
+					//jobufoGetVacancy();
+					$("#jobufo .step_login").fadeOut("slow"); setTimeout(function(){
+						$("#jobufo .step_vacancy").fadeIn("500");
+					});
+
+					$.ajax({
+						url: jobufo.api + "/auth/user/",
+						type: "GET",
+						headers: jobufo.headers,
+						success: function(data) {
+							console.log(data);
+							jobufo.video = data.ufouser.profile_video;
+							jobufo.role = data.ufouser.role;
+
+							// APPLY CLICK AFTER LogIN
+							if (jobufo.last_apply != null) {
+								$(jobufo.last_apply).click();
+								jobufo.last_apply = null;
+							}
+						}
+					});
 					},
 					error: function(a,b,c) {
 						console.log(a,b,c);
