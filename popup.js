@@ -340,15 +340,15 @@ $jobufo(document).ready(function(){
 
 			// RIGHT SLIDER OF IMAGES
 			member.find(".media .slide_right").click(function(){
-				var last = $(this).parent().find(".slides div:last");
-				var selected = $(this).parent().find(".slides .select");
+				var last = $jobufo(this).parent().find(".slides div:last");
+				var selected = $jobufo(this).parent().find(".slides .select");
 
 				var index = selected.index();
 				var new_index;
 				if (index < last.index()) {new_index = index + 1;}
 				else {new_index = 0;}
 
-				$(this).parent().find(".slides div:eq(" + new_index + ")").click();
+				$jobufo(this).parent().find(".slides div:eq(" + new_index + ")").click();
 			});
 
 			// IF NOT HAVE VIDEO -> HIDE PLAY BUTTON
