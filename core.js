@@ -1,4 +1,13 @@
-document.body.appendChild("<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>")
+function appendHtml(el, str) {
+  var div = document.createElement('div');
+  div.innerHTML = str;
+  while (div.children.length > 0) {
+    el.appendChild(div.children[0]);
+  }
+}
+var html = "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
+appendHtml(document.body, html);
+
 var $jobufo = $.noConflict(true);
 
 $jobufo(document).ready(function(){
