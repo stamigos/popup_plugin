@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // jQuery is already loaded, set up an asynchronous call
         // to the callback if any
         console.log("is jQuery")
-        var $ = $.noConflict(true);
+        var $ = window.jQuery.noConflict(true);
     }
     includejQuery(function($){
         $jobufo = $.noConflict(true);
