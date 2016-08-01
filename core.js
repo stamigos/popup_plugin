@@ -37,11 +37,11 @@ function includejQuery(callback) {
 var $jobufo = null;
 document.addEventListener('DOMContentLoaded', function() {
     if(window.jQuery) {
-        // jQuery is already loaded, set up an asynchronous call
-        // to the callback if any
+        // jQuery is already loaded
         console.log(window.jQuery("script"));
         console.log(jQuery("script"));
         var $ = jQuery.noConflict(true);
+        var jQuery = jQuery.noConflict(true);
         console.log($("script"));
     }
     includejQuery(function($){
