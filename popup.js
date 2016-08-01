@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 	// FaceBook AUTH SDK
 	$.ajaxSetup({ cache: true });
-	$.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+	$.getScript('http://connect.facebook.net/en_US/sdk.js', function(){
 		FB.init({
 			appId: '1780024958882179', //1780024958882179 1686458094968054
 			version: 'v2.5'
