@@ -1,31 +1,60 @@
-function appendHtml(el, str) {
-  var div = document.createElement('div');
-  div.innerHTML = str;
-  while (div.children.length > 0) {
-    el.appendChild(div.children[0]);
-  }
-}
-function getContainer() {
-    return new Promise(function (resolve, reject) {
-        waitForContainerElement(resolve);
-    });
-}
-var getContainer = new Promise(function(resolve, reject) {
-	waitForContainerElement(resolve);
-});
-
-function waitForContainerElement(resolve) {
-    var configElement = document.getElementById('jobufo_script');
-    if (configElement) {
-    	resolve(configElement);
-    } else {
-        setTimeout(waitForContainerElement.bind(this, resolve), 30);
+function includejQuery(callback) {
+    if(window.jQuery) {
+        // jQuery is already loaded, set up an asynchronous call
+        // to the callback if any
+        if (callback)
+        {
+            setTimeout(function() {
+                callback(jQuery);
+            }, 0);
+        }
+    }
+    else {
+        // jQuery not loaded, load it and when it loads call
+        // noConflict and the callback (if any).
+        var script = document.createElement('script');
+        script.onload = function() {
+        	// (!) must define $jobufo before function call
+            $jobufo = jQuery.noConflict(true);
+            if (callback) {
+                callback(jQuery);
+            }
+        };
+        script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js";
+        document.getElementsByTagName('head')[0].appendChild(script);
     }
 }
+// function appendHtml(el, str) {
+//   var div = document.createElement('div');
+//   div.innerHTML = str;
+//   while (div.children.length > 0) {
+//     el.appendChild(div.children[0]);
+//   }
+// }
+// function getContainer() {
+//     return new Promise(function (resolve, reject) {
+//         waitForContainerElement(resolve);
+//     });
+// }
+// var getContainer = new Promise(function(resolve, reject) {
+// 	waitForContainerElement(resolve);
+// });
 
+// function waitForContainerElement(resolve) {
+//     var configElement = document.getElementById('jobufo_script');
+//     if (configElement) {
+//     	resolve(configElement);
+//     } else {
+//         setTimeout(waitForContainerElement.bind(this, resolve), 30);
+//     }
+// }
+var $jobufo = null;
 document.addEventListener('DOMContentLoaded', function() {
-	var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
-	appendHtml(document.body, html);
+    includejQuery(function($){
+        
+    });
+	// var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
+	// appendHtml(document.body, html);
 });
 
 getContainer.then(function($container){
