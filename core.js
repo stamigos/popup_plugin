@@ -8,7 +8,7 @@ function includejQuery(callback) {
             }
         };
         script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js";
-        document.getElementsByTagName('head')[0].appendChild(script);
+        document.getElementsByTagName('body')[0].appendChild(script);
 }
 // function appendHtml(el, str) {
 //   var div = document.createElement('div');
