@@ -125,7 +125,6 @@
 
 
 <script type="text/javascript">
-	var $jobufo = $.noConflict(true);
 	// AUTO REPLACE DOMAIN {domain}
 	function imagesCDN() {
 		$jobufo("#jobufo img").each(function(){
