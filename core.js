@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // jQuery is already loaded
         console.log(window.jQuery("script"));
         console.log(jQuery("script"));
-        var $ = jQuery.noConflict(true);
+        $ = jQuery.noConflict(true);
         console.log($("script"));
     }
     includejQuery(function($){
