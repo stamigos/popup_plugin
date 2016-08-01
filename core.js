@@ -16,10 +16,10 @@ var getContainer = new Promise(function(resolve, reject) {
 
 function waitForContainerElement(resolve) {
     var configElement = document.getElementById('jobufo_script');
-    if (configElement.length === 0) {
-        setTimeout(waitForContainerElement.bind(this, resolve), 30);
+    if (configElement) {
+    	resolve(configElement);
     } else {
-        resolve(configElement);
+        setTimeout(waitForContainerElement.bind(this, resolve), 30);
     }
 }
 
@@ -27,12 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	var html = "<script id='jobufo_script' src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>";
 	appendHtml(document.body, html);
 });
+
 getContainer.then(function($container){
     var $jobufo = $.noConflict(true);
 });
-if (document.getElementById('jobufo_script')) {
-	var $jobufo = $.noConflict(true);
-}
 
 $jobufo(document).ready(function(){
 
