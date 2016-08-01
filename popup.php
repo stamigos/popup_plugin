@@ -1,5 +1,3 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <div class="header">
 	<div class="step_login step">
 		<img src="{domain}img/logo.png">
